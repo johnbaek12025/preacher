@@ -122,7 +122,7 @@ class Property(TimeStampedUUIDModel):
 
     def save(self, *args, **kwargs):
         self.title = str.title(self.title)
-        self.description = str.description(self.description)
+        self.description = str.capitalize(self.description)
         self.ref_code = "".join(
             random.choices(string.ascii_uppercase + string.digits), k=20
         )
@@ -133,7 +133,7 @@ class Property(TimeStampedUUIDModel):
         tax_percentage = self.tax
         property_price = self.price
         tax_amount = round(tax_percentage * property_price, 2)
-        price_after_tax = float(rount(property_price + tax_amount, 2))
+        price_after_tax = float(round(property_price + tax_amount, 2))
         return price_after_tax
 
 
